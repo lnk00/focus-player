@@ -1,14 +1,58 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
+:root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #181818;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connect_btn_wrapper {
+  position: relative;
+}
+
+.connect_btn_wrapper .connect_btn_transition {
+  position: absolute;
+  background-color: #1ed05e;
+  z-index: -1;
+  border-radius: 100%;
+  height: 1px;
+  width: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#connect_btn_spotify {
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 96px;
+  width: 96px;
+  font-family: "Bebas Neue";
+  transition: all;
+  transition-duration: 1s;
+}
+
+.connect_btn_wrapper:hover #connect_btn_spotify {
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
