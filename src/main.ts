@@ -1,3 +1,3 @@
 import "./style.css";
 
-console.log("WOKRING");
+console.log("WORKING");
