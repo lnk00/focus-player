@@ -26,7 +26,6 @@ button:hover {
 
 #scale_effect {
   position: absolute;
-  background-color: #1ed05e;
   z-index: -1;
   border-radius: 100%;
   height: 1px;

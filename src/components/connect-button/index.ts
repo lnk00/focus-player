@@ -5,21 +5,46 @@ export default class ConnectButton extends HTMLElement {
   constructor() {
     super();
 
-    const shadow = this.attachShadow({ mode: "open" });
-
-    const style = document.createElement("style");
-    style.textContent = styles;
-
     const logo = this.createLogo();
     const label = this.createLabel();
     const scaleEffect = this.createScaleEffect();
     const button = this.createButton(logo, label);
     const wrapper = this.createWrapper(scaleEffect, button);
+    const style = this.createStyle();
 
-    shadow.appendChild(style);
-    shadow.appendChild(wrapper);
+    this.createShadowDom(style, wrapper);
   }
 
+  // PROPS GETTERS / SETTERS
+  static get observedAttributes() {
+    return ["color", "label", "logo"];
+  }
+
+  get color() {
+    return this.getAttribute("color") || "red";
+  }
+
+  set color(value: string) {
+    this.setAttribute("color", value);
+  }
+
+  get label() {
+    return this.getAttribute("label") || "connect";
+  }
+
+  set label(value: string) {
+    this.setAttribute("label", value);
+  }
+
+  get logo() {
+    return this.getAttribute("logo") || "/vite.svg";
+  }
+
+  set logo(value: string) {
+    this.setAttribute("logo", value);
+  }
+
+  // ELEMENTS FACTORIES
   createWrapper(scaleEffect: HTMLElement, button: HTMLElement) {
     const wrapper = document.createElement("div");
     wrapper.id = "wrapper";
@@ -47,6 +72,7 @@ export default class ConnectButton extends HTMLElement {
   createScaleEffect() {
     const scaleEffect = document.createElement("div");
     scaleEffect.id = "scale_effect";
+    scaleEffect.style.backgroundColor = this.color;
 
     return scaleEffect;
   }
@@ -62,7 +88,7 @@ export default class ConnectButton extends HTMLElement {
 
   createLogo() {
     const logo = document.createElement("img");
-    logo.src = "/spotify.svg";
+    logo.src = this.logo;
     logo.width = 36;
     logo.height = 36;
 
@@ -71,8 +97,22 @@ export default class ConnectButton extends HTMLElement {
 
   createLabel() {
     const label = document.createElement("span");
-    label.textContent = "Spotify";
+    label.textContent = this.label;
 
     return label;
+  }
+
+  createStyle() {
+    const style = document.createElement("style");
+    style.textContent = styles;
+
+    return style;
+  }
+
+  createShadowDom(style: HTMLStyleElement, wrapper: HTMLElement) {
+    const shadow = this.attachShadow({ mode: "open" });
+
+    shadow.appendChild(style);
+    shadow.appendChild(wrapper);
   }
 }
