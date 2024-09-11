@@ -49,19 +49,27 @@ export default class ConnectButton extends HTMLElement {
     const wrapper = document.createElement("div");
     wrapper.id = "wrapper";
 
-    wrapper.onmouseenter = () =>
+    wrapper.onmouseenter = () => {
+      scaleEffect.style.zIndex = "1";
+      button.style.zIndex = "2";
       anime({
         targets: scaleEffect,
         scale: 2000,
         easing: "easeOutElastic(1, 0.5)",
       });
+    };
 
-    wrapper.onmouseleave = () =>
+    wrapper.onmouseleave = () => {
       anime({
         targets: scaleEffect,
         scale: 0,
         easing: "easeInElastic(1, 0.5)",
+        complete: () => {
+          scaleEffect.style.zIndex = "0";
+          button.style.zIndex = "0";
+        },
       });
+    };
 
     wrapper.appendChild(scaleEffect);
     wrapper.appendChild(button);
@@ -79,6 +87,7 @@ export default class ConnectButton extends HTMLElement {
 
   createButton(logo: HTMLElement, label: HTMLElement) {
     const button = document.createElement("button");
+    button.style.backgroundColor = this.color;
 
     button.appendChild(logo);
     button.appendChild(label);
