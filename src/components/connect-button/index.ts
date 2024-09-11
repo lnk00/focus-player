@@ -50,8 +50,8 @@ export default class ConnectButton extends HTMLElement {
     wrapper.id = "wrapper";
 
     wrapper.onmouseenter = () => {
-      scaleEffect.style.zIndex = "1";
       button.style.zIndex = "2";
+      scaleEffect.style.zIndex = "1";
       anime({
         targets: scaleEffect,
         scale: 2000,
@@ -65,8 +65,8 @@ export default class ConnectButton extends HTMLElement {
         scale: 0,
         easing: "easeInElastic(1, 0.5)",
         complete: () => {
-          scaleEffect.style.zIndex = "0";
-          button.style.zIndex = "1";
+          scaleEffect.style.zIndex = "initial";
+          button.style.zIndex = "initial";
         },
       });
     };
