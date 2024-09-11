@@ -66,7 +66,7 @@ export default class ConnectButton extends HTMLElement {
         easing: "easeInElastic(1, 0.5)",
         complete: () => {
           scaleEffect.style.zIndex = "0";
-          button.style.zIndex = "0";
+          button.style.zIndex = "1";
         },
       });
     };
