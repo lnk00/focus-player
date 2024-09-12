@@ -2,10 +2,6 @@ import anime from "animejs/lib/anime.es.js";
 import styles from "./style.css?inline";
 
 export default class ConnectButton extends HTMLElement {
-  timeoutId = 0;
-  isMouseOver = false;
-  delayTime = 200;
-
   constructor() {
     super();
 
@@ -111,27 +107,17 @@ export default class ConnectButton extends HTMLElement {
   // HANDLE EVENTS
   handleMouseEvents(button: HTMLElement, scaleEffect: HTMLElement) {
     button.onmouseenter = () => {
-      this.isMouseOver = true;
-      clearTimeout(this.timeoutId);
+      button.style.zIndex = "2";
+      scaleEffect.style.zIndex = "1";
 
-      this.timeoutId = setTimeout(() => {
-        if (this.isMouseOver) {
-          button.style.zIndex = "2";
-          scaleEffect.style.zIndex = "1";
-
-          anime({
-            targets: scaleEffect,
-            scale: 2000,
-            easing: "easeOutElastic(1, 0.5)",
-          });
-        }
-      }, this.delayTime);
+      anime({
+        targets: scaleEffect,
+        scale: 2000,
+        easing: "easeOutElastic(1, 0.5)",
+      });
     };
 
     button.onmouseleave = () => {
-      this.isMouseOver = false;
-      clearTimeout(this.timeoutId);
-
       anime({
         targets: scaleEffect,
         scale: 0,
