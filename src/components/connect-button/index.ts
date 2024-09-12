@@ -115,7 +115,8 @@ export default class ConnectButton extends HTMLElement {
 
       anime({
         targets: scaleEffect,
-        scale: 1200,
+        width: 1200,
+        height: 1200,
         easing: "easeOutElastic(1, 0.5)",
       });
     };
@@ -124,7 +125,8 @@ export default class ConnectButton extends HTMLElement {
       this.isMouseOver = false;
       anime({
         targets: scaleEffect,
-        scale: 0,
+        width: 0,
+        height: 0,
         easing: "easeInElastic(1, 0.5)",
         complete: () => {
           if (this.isMouseOver === false) {
