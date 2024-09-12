@@ -1,22 +1,22 @@
 #wrapper {
   position: relative;
-  height: 112px;
-  width: 112px;
+  height: 192px;
+  width: 192px;
   border-radius: 100%;
 }
 
 button {
   border: 2px solid rgba(255, 255, 255, 0);
   border-radius: 100%;
-  height: 112px;
-  width: 112px;
+  height: 192px;
+  width: 192px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   font-family: "Bebas Neue";
   transition: "all";
   transition-duration: 1s;

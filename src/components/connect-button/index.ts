@@ -79,8 +79,8 @@ export default class ConnectButton extends HTMLElement {
   createLogo() {
     const logo = document.createElement("img");
     logo.src = this.logo;
-    logo.width = 36;
-    logo.height = 36;
+    logo.width = 56;
+    logo.height = 56;
 
     return logo;
   }
