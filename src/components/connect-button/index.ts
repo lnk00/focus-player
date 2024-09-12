@@ -12,6 +12,7 @@ export default class ConnectButton extends HTMLElement {
     const wrapper = this.createWrapper(scaleEffect, button);
     const style = this.createStyle();
 
+    this.handleMouseEvents(button, scaleEffect);
     this.createShadowDom(style, wrapper);
   }
 
@@ -48,28 +49,6 @@ export default class ConnectButton extends HTMLElement {
   createWrapper(scaleEffect: HTMLElement, button: HTMLElement) {
     const wrapper = document.createElement("div");
     wrapper.id = "wrapper";
-
-    wrapper.onmouseenter = () => {
-      button.style.zIndex = "2";
-      scaleEffect.style.zIndex = "1";
-      anime({
-        targets: scaleEffect,
-        scale: 2000,
-        easing: "easeOutElastic(1, 0.5)",
-      });
-    };
-
-    wrapper.onmouseleave = () => {
-      anime({
-        targets: scaleEffect,
-        scale: 0,
-        easing: "easeInElastic(1, 0.5)",
-        complete: () => {
-          scaleEffect.style.zIndex = "initial";
-          button.style.zIndex = "initial";
-        },
-      });
-    };
 
     wrapper.appendChild(scaleEffect);
     wrapper.appendChild(button);
@@ -123,5 +102,31 @@ export default class ConnectButton extends HTMLElement {
 
     shadow.appendChild(style);
     shadow.appendChild(wrapper);
+  }
+
+  // HANDLE EVENTS
+  handleMouseEvents(button: HTMLElement, scaleEffect: HTMLElement) {
+    button.onmouseenter = () => {
+      button.style.zIndex = "2";
+      scaleEffect.style.zIndex = "1";
+
+      anime({
+        targets: scaleEffect,
+        scale: 2000,
+        easing: "easeOutElastic(1, 0.5)",
+      });
+    };
+
+    button.onmouseleave = () => {
+      anime({
+        targets: scaleEffect,
+        scale: 0,
+        easing: "easeInElastic(1, 0.5)",
+        complete: () => {
+          scaleEffect.style.zIndex = "initial";
+          button.style.zIndex = "initial";
+        },
+      });
+    };
   }
 }
