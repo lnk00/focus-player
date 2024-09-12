@@ -115,7 +115,7 @@ export default class ConnectButton extends HTMLElement {
 
       anime({
         targets: scaleEffect,
-        scale: 2000,
+        scale: 1200,
         easing: "easeOutElastic(1, 0.5)",
       });
     };
