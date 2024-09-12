@@ -2,6 +2,8 @@ import anime from "animejs/lib/anime.es.js";
 import styles from "./style.css?inline";
 
 export default class ConnectButton extends HTMLElement {
+  isMouseOver = false;
+
   constructor() {
     super();
 
@@ -107,6 +109,7 @@ export default class ConnectButton extends HTMLElement {
   // HANDLE EVENTS
   handleMouseEvents(button: HTMLElement, scaleEffect: HTMLElement) {
     button.onmouseenter = () => {
+      this.isMouseOver = true;
       button.style.zIndex = "2";
       scaleEffect.style.zIndex = "1";
 
@@ -118,13 +121,16 @@ export default class ConnectButton extends HTMLElement {
     };
 
     button.onmouseleave = () => {
+      this.isMouseOver = false;
       anime({
         targets: scaleEffect,
         scale: 0,
         easing: "easeInElastic(1, 0.5)",
         complete: () => {
-          scaleEffect.style.zIndex = "initial";
-          button.style.zIndex = "initial";
+          if (this.isMouseOver === false) {
+            scaleEffect.style.zIndex = "initial";
+            button.style.zIndex = "initial";
+          }
         },
       });
     };
