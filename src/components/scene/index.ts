@@ -10,7 +10,6 @@ export default class PlayerScene extends HTMLElement {
     this.createShadowDom(style, wrapper);
   }
 
-  // ELEMENTS FACTORIES
   createScene() {
     const scene = document.createElement("div");
     scene.id = "scene";
