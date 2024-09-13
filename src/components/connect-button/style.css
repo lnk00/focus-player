@@ -7,7 +7,6 @@
 
 button {
   border: 2px solid rgba(255, 255, 255, 0);
-  /* border-radius: 100%; */
   height: 192px;
   width: 192px;
   cursor: pointer;
@@ -21,6 +20,7 @@ button {
   transition: "all";
   transition-duration: 1s;
   position: relative;
+  color: white;
 }
 
 #wrapper:hover button {
