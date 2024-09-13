@@ -1,4 +1,4 @@
+import PlayerScene from "./components/scene";
 import "./style.css";
-import ConnectButton from "./components/connect-button";
 
-customElements.define("connect-button", ConnectButton);
+customElements.define("player-scene", PlayerScene);
