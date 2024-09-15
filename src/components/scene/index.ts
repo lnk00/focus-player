@@ -14,10 +14,9 @@ class Camera extends THREE.PerspectiveCamera {
 }
 
 class Renderer extends THREE.WebGLRenderer {
-  constructor(shadow: ShadowRoot) {
+  constructor() {
     super();
     this.setSize(window.innerWidth, window.innerHeight);
-    shadow.appendChild(this.domElement);
   }
 }
 
@@ -45,14 +44,13 @@ export default class SceneComponent extends HTMLElement {
   constructor() {
     super();
 
-    const shadowDom = this.createShadowDom();
-
     this.scene = new Scene();
     this.camera = new Camera();
-    this.renderer = new Renderer(shadowDom);
+    this.renderer = new Renderer();
     this.cube = new Cube();
 
     this.init();
+    this.addSceneToDOM(this.renderer);
   }
 
   init() {
@@ -68,19 +66,12 @@ export default class SceneComponent extends HTMLElement {
     this.renderer.render(this.scene, this.camera);
   }
 
-  createStyle() {
+  addSceneToDOM(renderer: Renderer) {
+    const shadow = this.attachShadow({ mode: "open" });
     const style = document.createElement("style");
     style.textContent = styles;
 
-    return style;
-  }
-
-  createShadowDom() {
-    const shadow = this.attachShadow({ mode: "open" });
-    const style = this.createStyle();
-
     shadow.appendChild(style);
-
-    return shadow;
+    shadow.appendChild(renderer.domElement);
   }
 }
