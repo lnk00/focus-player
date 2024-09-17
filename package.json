@@ -7,7 +7,6 @@
   "private": true,
   "workspaces": ["front", "back"],
   "scripts": {
-    "back:dev": "yarn workspace back dev",
     "front:dev": "yarn workspace front dev"
   }
 }
