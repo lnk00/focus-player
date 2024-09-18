@@ -1,7 +1,7 @@
 import Camera from "../../three/camera";
-import Cube from "../../three/cube";
 import AmbientLight from "../../three/lights/ambient";
 import DirectionalLight from "../../three/lights/directional";
+import PlayerModel from "../../three/models/player";
 import Renderer from "../../three/renderer";
 import Scene from "../../three/scene";
 import styles from "./style.css?inline";
@@ -12,7 +12,7 @@ export default class SceneComponent extends HTMLElement {
   renderer: Renderer;
   ambientLight: AmbientLight;
   directionalLight: DirectionalLight;
-  cube: Cube;
+  playerModel: PlayerModel;
 
   constructor() {
     super();
@@ -22,22 +22,23 @@ export default class SceneComponent extends HTMLElement {
     this.renderer = new Renderer();
     this.ambientLight = new AmbientLight();
     this.directionalLight = new DirectionalLight();
-    this.cube = new Cube();
-
-    this.init();
-    this.addSceneToDOM(this.renderer);
+    this.playerModel = new PlayerModel();
+    this.playerModel.load().then(() => {
+      this.init();
+      this.addSceneToDOM(this.renderer);
+    });
   }
 
   init() {
-    this.scene.add(this.cube.mesh);
     this.scene.add(this.ambientLight);
     this.scene.add(this.directionalLight);
+    this.scene.add(this.playerModel.mesh!);
 
     this.renderer.setAnimationLoop(this.render.bind(this));
   }
 
   render() {
-    this.cube.rotate();
+    this.playerModel.rotate();
 
     this.renderer.render(this.scene, this.camera);
   }
