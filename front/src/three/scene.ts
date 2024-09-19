@@ -7,9 +7,9 @@ export default class Scene extends THREE.Scene {
     super();
   }
 
-  setupEnvMap() {
+  async loadEnvMap() {
     const cubeTextureLoader = new THREE.CubeTextureLoader();
-    const environmentMap = cubeTextureLoader.load([
+    const environmentMap = await cubeTextureLoader.loadAsync([
       `${this.envMapBaseUrl}/px.png`,
       `${this.envMapBaseUrl}/nx.png`,
       `${this.envMapBaseUrl}/py.png`,
