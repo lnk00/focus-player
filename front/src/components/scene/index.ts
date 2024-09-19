@@ -1,6 +1,4 @@
 import Camera from "../../three/camera";
-import AmbientLight from "../../three/lights/ambient";
-import DirectionalLight from "../../three/lights/directional";
 import PlayerModel from "../../three/models/player";
 import Renderer from "../../three/renderer";
 import Scene from "../../three/scene";
@@ -10,8 +8,6 @@ export default class SceneComponent extends HTMLElement {
   scene: Scene;
   camera: Camera;
   renderer: Renderer;
-  ambientLight: AmbientLight;
-  directionalLight: DirectionalLight;
   playerModel: PlayerModel;
 
   constructor() {
@@ -20,8 +16,6 @@ export default class SceneComponent extends HTMLElement {
     this.scene = new Scene();
     this.camera = new Camera();
     this.renderer = new Renderer();
-    this.ambientLight = new AmbientLight();
-    this.directionalLight = new DirectionalLight();
     this.playerModel = new PlayerModel();
     this.playerModel.load().then(() => {
       this.init();
@@ -30,8 +24,7 @@ export default class SceneComponent extends HTMLElement {
   }
 
   init() {
-    this.scene.add(this.ambientLight);
-    this.scene.add(this.directionalLight);
+    this.scene.setupEnvMap();
     this.scene.add(this.playerModel.mesh!);
 
     this.renderer.setAnimationLoop(this.render.bind(this));
