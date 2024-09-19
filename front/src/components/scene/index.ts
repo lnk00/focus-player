@@ -38,8 +38,6 @@ export default class SceneComponent extends HTMLElement {
   }
 
   render() {
-    this.playerModel.rotate();
-
     this.renderer.render(this.scene, this.camera);
   }
 
