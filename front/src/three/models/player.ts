@@ -13,14 +13,7 @@ export default class PlayerModel {
   }
 
   updateRotationWithCursor(cursor: Cursor) {
-    this.mesh!.rotation.x = cursor.y;
-    this.mesh!.rotation.y = cursor.x;
-  }
-
-  rotate() {
-    if (this.mesh) {
-      this.mesh.rotation.x += 0.01;
-      this.mesh.rotation.y += 0.01;
-    }
+    this.mesh!.rotation.x = cursor.y * -1;
+    this.mesh!.rotation.y = cursor.x * -1;
   }
 }
