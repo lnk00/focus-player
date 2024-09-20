@@ -20,6 +20,6 @@ export default class Scene extends THREE.Scene {
 
     this.environment = environmentMap;
     this.environmentRotation.y = 5;
-    this.environmentIntensity = 3;
+    this.environmentIntensity = 5;
   }
 }

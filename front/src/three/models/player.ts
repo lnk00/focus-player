@@ -1,15 +1,15 @@
-import { Object3D } from "three";
+import { Group } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Cursor from "../cursor";
 
 export default class PlayerModel {
-  mesh: Object3D | undefined;
+  mesh: Group | undefined;
 
   constructor() {}
 
   async load() {
     const glb = await new GLTFLoader().loadAsync("/player.glb");
-    this.mesh = glb.scene.children[0];
+    this.mesh = glb.scene;
   }
 
   updateRotationWithCursor(cursor: Cursor) {
