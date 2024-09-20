@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 export default class Scene extends THREE.Scene {
-  envMapBaseUrl = "/cubemaps/outdoor";
+  envMapBaseUrl = "/cubemaps/studio";
 
   constructor() {
     super();
@@ -19,7 +19,7 @@ export default class Scene extends THREE.Scene {
     ]);
 
     this.environment = environmentMap;
-    this.environmentRotation.y = 5;
-    this.environmentIntensity = 5;
+    this.environmentRotation.y = 0;
+    this.environmentIntensity = 4;
   }
 }

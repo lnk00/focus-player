@@ -34,7 +34,6 @@ export default class SceneComponent extends HTMLElement {
   }
 
   render() {
-    this.camera.updatePositionWithCursor(this.cursor);
     this.playerModel.updateRotationWithCursor(this.cursor);
 
     this.renderer.render(this.scene, this.camera);
